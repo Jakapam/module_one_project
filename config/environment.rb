@@ -8,3 +8,4 @@ ActiveRecord::Base.establish_connection({
   })
 
 require_all './lib'
+require_all './app/models'
