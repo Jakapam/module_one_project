@@ -8,13 +8,16 @@ game.help
 input = ""
 
 while input.downcase != "quit"
+
   input = game.gets_user_input
+
   case input.downcase
     when "help"
       game.help
     when "new game"
       puts "Let's Play!"
-       ##Starts a new game.
+        game.new_game_setup
+        game.run_game #Drop player into David's WorldMap
     else
       puts "Sorry, I didn't understand."
       game.help

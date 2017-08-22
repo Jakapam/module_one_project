@@ -35,13 +35,46 @@ class CommandLineInterface
   end
 
   def choose_starter_pokemon
-    puts "Which Pokemon would you like?"
+    puts "Which Pokemon would you like to start with?"
+    puts "1. Bulbasaur"
+    puts "2. Charmander"
+    puts "3. Squirtle"
+    puts "Enter a number (1-3):"
+    input = gets.chomp
+
+    case input
+    when "1"
+      1
+    when "2"
+      4
+    when "3"
+      7
+    else
+      "Sorry, that's not one of the choices!"
+      choose_starter_pokemon
+    end
   end
 
   def new_game_setup
     trainer_name = gets_user_name
+
+    print "Hi, #{trainer_name}, "
     rival_name = gets_rival_name
-    new_trainer = Trainer.new(name: trainer_name, rival_name: rival_name)
+
+    new_trainer = Trainer.create(name: trainer_name, rival_name: rival_name)
+    starter_poke_id = choose_starter_pokemon
+
+    new_trainer.get_pokemon(starter_poke_id)
+    puts "\nCongratulations! You have a #{Pokemon.find(starter_poke_id).name}!"
+  end
+
+  def run_game
+    puts "**Placeholder: Drop player into Game Interface**"
+    #this method integrates into David's Worlmap Display
+  end
+
+  def in_game_menu
+    #roster options
   end
 
 end
