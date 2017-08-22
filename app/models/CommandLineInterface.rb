@@ -1,5 +1,7 @@
 class CommandLineInterface
 
+attr_accessor :current_player
+
   def greet
    puts "Welcome to Web-080717 Pokemon! Pokemon is copyrighted by Pokemon Company International.
     \nProject is for educational purposes only. Please don't sue us.
@@ -11,6 +13,8 @@ class CommandLineInterface
     puts "Commands: \n"
     puts "** 'help' for instructions"
     puts "** 'New Game' to start a new game"
+    puts "** 'Load Game' to continue a game"
+    puts "** 'Reset' to reset play data"
     puts "** 'Quit' to exit"
     puts " "
   end
@@ -66,11 +70,32 @@ class CommandLineInterface
 
     new_trainer.get_pokemon(starter_poke_id)
     puts "\nCongratulations! You have a #{Pokemon.find(starter_poke_id).name}!"
+    self.current_player = new_trainer
+  end
+
+  def load_game
+    puts "Thanks for coming back!"
+    puts "Enter a number to load a game:"
+
+    Trainer.display_trainer_names
+
+    input = gets.chomp
+
+    while input.to_i == 0 || !Trainer.all[input.to_i-1]
+      puts "Invalid input, please enter valid number:"
+      Trainer.display_trainer_names
+      input = gets.chomp
+    end
+
+    self.current_player = Trainer.find_by(name: "#{Trainer.all[input.to_i-1].name}")
+
   end
 
   def run_game
-    puts "**Placeholder: Drop player into Game Interface**"
+
+    puts "** Placeholder: Drop player into Game Interface **"
     #this method integrates into David's Worlmap Display
+
   end
 
   def in_game_menu

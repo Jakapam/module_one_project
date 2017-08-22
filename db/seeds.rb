@@ -2,7 +2,7 @@ require 'csv'
 
 
 CSV.foreach('./db/pokemon.csv') { |row|
-  if row[0] != 'id' && row[0].to_i <= 151
+  if row[0] != 'id' && row[0].to_i <= 9
     Pokemon.find_or_create_by(name: row[1])
   end
 }

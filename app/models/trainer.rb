@@ -6,7 +6,6 @@ class Trainer < ActiveRecord::Base
 
 #assigns a Trainer a pokemon through the Roster with an Id equal to the ID passed in
   def get_pokemon(id)
-    binding.pry
     new_poke = Roster.create(pokemon_id: id, trainer_id: self.id)
     new_poke = new_poke.update(Roster.default_attributes)
   end
@@ -19,8 +18,14 @@ class Trainer < ActiveRecord::Base
      self.rosters
   end
 
+  def self.display_trainer_names
+    Trainer.all.each_with_index do |trainer, index|
+      puts"#{index+1}. #{trainer.name}"
+    end
+  end
+
   def show_roster
-  
+
   end
 
 end
