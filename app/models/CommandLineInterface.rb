@@ -88,7 +88,7 @@ attr_accessor :current_player
     end
 
     self.current_player = Trainer.find_by(name: "#{Trainer.all[input.to_i-1].name}")
-
+    
   end
 
   def run_game

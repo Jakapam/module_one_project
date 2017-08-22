@@ -18,6 +18,10 @@ class Trainer < ActiveRecord::Base
      self.rosters
   end
 
+  def lead_pokemon
+    self.rosters.first
+  end
+
   def self.display_trainer_names
     Trainer.all.each_with_index do |trainer, index|
       puts"#{index+1}. #{trainer.name}"
