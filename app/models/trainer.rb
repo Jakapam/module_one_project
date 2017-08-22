@@ -10,4 +10,12 @@ class Trainer < ActiveRecord::Base
     new_poke = new_poke.update(Roster.default_attributes)
   end
 
+  def remove_pokemon(roster_id)
+    Roster.delete(roster_id)
+  end
+
+  def show_roster
+     self.rosters
+  end
+
 end
