@@ -5,6 +5,7 @@ class CreateMove < ActiveRecord::Migration[5.1]
       t.integer :damage
       t.integer :heal
       t.integer :dodge_chance
+      t.string :type
     end
   end
 end
