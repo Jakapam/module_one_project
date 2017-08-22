@@ -4,7 +4,6 @@ class CreateRoster < ActiveRecord::Migration[5.1]
       t.integer :trainer_id
       t.integer :pokemon_id
       t.integer :current_hp
-      t.integer :current_xp
       t.integer :move_1_id
       t.integer :move_2_id
       t.integer :move_3_id
