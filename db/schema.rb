@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20170822141048) do
     t.integer "damage"
     t.integer "heal"
     t.integer "dodge_chance"
+    t.string "category"
   end
 
   create_table "pokemons", force: :cascade do |t|

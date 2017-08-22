@@ -15,6 +15,16 @@ class CommandLineInterface
     puts " "
   end
 
+  def gets_user_name
+    puts "What is your name?"
+    gets.chomp
+  end
+
+  def gets_rival_name
+    puts "You have a rival! What's your rival's name?"
+    gets.chomp
+  end
+
   def gets_user_input
     puts "What would you like to do?"
     gets.chomp
@@ -22,6 +32,16 @@ class CommandLineInterface
 
   def goodbye
     puts "Thanks for playing!"
+  end
+
+  def choose_starter_pokemon
+    puts "Which Pokemon would you like?"
+  end
+
+  def new_game_setup
+    trainer_name = gets_user_name
+    rival_name = gets_rival_name
+    new_trainer = Trainer.new(name: trainer_name, rival_name: rival_name)
   end
 
 end

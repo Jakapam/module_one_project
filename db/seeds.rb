@@ -7,7 +7,7 @@ CSV.foreach('./db/pokemon.csv') { |row|
   end
 }
 
-Move.create(name: "Attack", damage: 6, heal: 0, dodge_chance: 0, type: "a")
-Move.create(name: "Heal", damage: 0, heal: 4, dodge_chance: 0, type: "h")
-Move.create(name: "Dodge", damage: 0, heal: 0, dodge_chance: 50, type: "d")
-Move.create(name: "Taunt", damage: 0, heal: 0, dodge_chance: 0, type: "t")
+Move.create(name: "Attack", damage: 6, heal: 0, dodge_chance: 0, category: "a")
+Move.create(name: "Heal", damage: 0, heal: 4, dodge_chance: 0, category: "h")
+Move.create(name: "Dodge", damage: 0, heal: 0, dodge_chance: 50, category: "d")
+Move.create(name: "Taunt", damage: 0, heal: 0, dodge_chance: 0, category: "t")
