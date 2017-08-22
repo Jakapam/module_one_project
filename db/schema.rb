@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20170822141048) do
     t.string "name"
   end
 
-  create_table "roster", force: :cascade do |t|
+  create_table "rosters", force: :cascade do |t|
     t.integer "trainer_id"
     t.integer "pokemon_id"
     t.integer "current_hp"

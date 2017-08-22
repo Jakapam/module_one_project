@@ -1,6 +1,6 @@
 class CreateRoster < ActiveRecord::Migration[5.1]
   def change
-    create_table(:roster) do |t|
+    create_table(:rosters) do |t|
       t.integer :trainer_id
       t.integer :pokemon_id
       t.integer :current_hp
