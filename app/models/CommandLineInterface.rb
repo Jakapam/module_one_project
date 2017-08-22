@@ -1,6 +1,12 @@
 class CommandLineInterface
 
-attr_accessor :current_player
+  def self.current_player=(player)
+    @@current_player = player
+  end
+
+  def self.current_player
+    @@current_player
+  end
 
   def greet
    puts "Welcome to Web-080717 Pokemon! Pokemon is copyrighted by Pokemon Company International.
@@ -70,7 +76,7 @@ attr_accessor :current_player
 
     new_trainer.get_pokemon(starter_poke_id)
     puts "\nCongratulations! You have a #{Pokemon.find(starter_poke_id).name}!"
-    self.current_player = new_trainer
+    self.class.current_player = new_trainer
   end
 
   def load_game
@@ -87,8 +93,8 @@ attr_accessor :current_player
       input = gets.chomp
     end
 
-    self.current_player = Trainer.find_by(name: "#{Trainer.all[input.to_i-1].name}")
-    
+    self.class.current_player = Trainer.find_by(name: "#{Trainer.all[input.to_i-1].name}")
+
   end
 
   def run_game
