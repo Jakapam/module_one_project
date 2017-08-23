@@ -170,9 +170,21 @@ class Game
 
   def won? #this method is in get_move checks how many pokemon you defeated
     if @defeated_pokemons === 4
-      puts "IT WORKS!!!!!!!!!!!!!!!!"
-      return
+      @defeated_pokemons = 0
+      play_again?
     end
+  end
+
+  def play_again?
+      Catpix::print_image "./app/models/image/youwin.png",
+        :limit_x => 1.0,
+        :limit_y => 1.0,
+        :center_x => false,
+        :center_y => false,
+        # :bg => "white",
+        :bg_fill => true,
+        :resolution => "auto"
+      print
   end
 
 end
