@@ -105,7 +105,9 @@ class CommandLineInterface
     Trainer.display_trainer_names
     input = gets.chomp
     input = check_input(input)
-    self.class.current_player = Trainer.find_by(name: "#{Trainer.all[input.to_i-1].name}")
+    player= Trainer.find_by(name: "#{Trainer.all[input.to_i-1].name}")
+    player.current_roster = player.rosters
+    self.class.current_player = player
   end
 
   def run_game

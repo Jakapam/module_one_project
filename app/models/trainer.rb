@@ -5,8 +5,6 @@ class Trainer < ActiveRecord::Base
   attr_accessor :current_roster
 
 
-
-
 #assigns a Trainer a pokemon through the Roster with an Id equal to the ID passed in
   def get_pokemon(id)
     new_poke = Roster.create(pokemon_id: id, trainer_id: self.id)
