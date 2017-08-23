@@ -145,7 +145,7 @@ class Game
           fight_pokemon
         end
       when /r/i
-        puts "Justin's Show Roster Method"
+        CommandLineInterface.current_player.display_roster
       when /n/i
         CommandLineInterface.new.new_game_setup
       when /k/i

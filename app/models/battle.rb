@@ -53,6 +53,7 @@ class Battle
     # randomly select a move for the enemy
     random_move = rand(0..3)
     move = self.enemy.move_set[random_move]
+    puts move
     puts move.class
     move_logic(self.enemy, move, self.player)
   end
@@ -105,11 +106,12 @@ class Battle
   def clean_up
     if self.enemy.current_hp <= 0
       puts("You defeated the #{self.enemy.name}!")
+      puts self.enemy.pokemon_id
       CommandLineInterface.current_player.get_pokemon(self.enemy.pokemon_id)
       puts "#{self.enemy.name} was added to your roster!\nYour pokemon are feeling weary af and rest to heal."
-      CommandLineInterface.current_player.rosters.each do |pokemon|
-        pokemon.current_hp = self.base_hp
-      end
+      # CommandLineInterface.current_player.rosters.each do |pokemon|
+      #   pokemon.current_hp = self.base_hp
+      # end
       return true
     elsif self.player.current_hp <= 0
       puts("You lost :/")

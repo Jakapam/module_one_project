@@ -72,6 +72,7 @@ class CommandLineInterface
     rival_name = gets_rival_name
 
     new_trainer = Trainer.create(name: trainer_name, rival_name: rival_name)
+    new_trainer.current_roster = []
     starter_poke_id = choose_starter_pokemon
 
     new_trainer.get_pokemon(starter_poke_id)
