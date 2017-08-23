@@ -123,12 +123,8 @@ class CommandLineInterface
   def run_game
     if Game.new.get_move
       sleep(3)
-      abort("Thanks for playing!!!")
+      Runner.run
     end
-  end
-
-  def in_game_menu
-    #roster options
   end
 
 end

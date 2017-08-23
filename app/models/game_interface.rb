@@ -47,9 +47,8 @@ class Game
     @board[9] = "⛩"
     user_input.loop do |key|
       make_move(key.to_s) #method
-      won?
+      break if won?
     end
-    return true
   end
 
   def change_board #moves the character piece
@@ -172,6 +171,7 @@ class Game
     if @defeated_pokemons === 1
       @defeated_pokemons = 0
       play_again?
+      return true
     end
   end
 
