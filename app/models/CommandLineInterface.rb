@@ -121,7 +121,10 @@ class CommandLineInterface
   end
 
   def run_game
-    Game.new.get_move
+    if Game.new.get_move
+      sleep(3)
+      Runner.run
+    end
   end
 
   def in_game_menu

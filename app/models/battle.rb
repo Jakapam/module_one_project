@@ -62,8 +62,12 @@ class Battle
     move_logic(self.enemy, move, self.player)
   end
 
-  def player_input_valid?(input)
-    [1,2,3,4].include?(input)
+  def player_input_valid(input)
+    while input <= 0 || input > 4
+      puts "Invalid input, please enter a number from 1-4:"
+      input = gets.chomp.to_i
+    end
+    input
   end
 
   def player_turn
@@ -72,8 +76,9 @@ class Battle
     self.player.move_set.each_with_index do |move_instance, index|
       puts "#{index+1}. #{move_instance.name}"
     end
-    input = STDIN.gets.chomp.to_i
-    self.player_input_valid?(input) ? true : self.player_turn
+    input = gets.chomp.to_i
+    input = player_input_valid(input)
+
     move = self.player.move_set[(input - 1)]
     move_logic(self.player, move, self.enemy)
   end
@@ -141,8 +146,7 @@ class Battle
       sleep(1)
       self.enemy_turn
       break if self.clean_up
-      sleep(2)
-      print("\n"+'='*30)
+      sleep(1)
     end
     return true
   end

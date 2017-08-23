@@ -50,6 +50,7 @@ class Game
       make_move(key.to_s) #method
       won?
     end
+    return true
   end
 
   def change_board #moves the character piece
@@ -179,8 +180,8 @@ class Game
       Catpix::print_image "./app/models/image/youwin.png",
         :limit_x => 1.0,
         :limit_y => 1.0,
-        :center_x => false,
-        :center_y => false,
+        :center_x => true,
+        :center_y => true,
         # :bg => "white",
         :bg_fill => true,
         :resolution => "auto"
