@@ -5,6 +5,8 @@ class Roster < ActiveRecord::Base
 
   attr_accessor :base_hp, :dodge
 
+  @base_hp = 60
+
   def self.lead_pokemon
     CommandLineInterface.current_player.lead_pokemon
   end
@@ -31,12 +33,6 @@ class Roster < ActiveRecord::Base
 
   def name
     Pokemon.find(self.pokemon_id).name.capitalize
-  end
-
-  def self.player_test
-    player = self.create(self.default_attributes)
-    player.base_hp = player.current_hp
-    player
   end
 
   def self.new_enemy

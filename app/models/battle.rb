@@ -74,19 +74,6 @@ class Battle
     move_logic(self.player, move, self.enemy)
   end
 
-  def clean_up
-    if self.enemy.current_hp <= 0
-      puts("You defeated the #{self.enemy.name}!")
-      # self.enemy.trainer_id = CommandLineInterface.current_player.id
-      # self.enemy.current_hp = 60
-      return true
-    elsif self.player.current_hp <= 0
-      puts("You lost :/")
-      return true
-    end
-    return false
-  end
-
   def pokemon_enemy_image(hp)
     Catpix::print_image "./app/models/image/#{rand(1..3)}.png",
       :limit_x => 0.35,
@@ -113,6 +100,22 @@ class Battle
 
       #Marlan needs to pass in hp as arg
       print ((" "*(hp/2)).bg "#eb443b") + " HP #{hp}\n"
+  end
+
+  def clean_up
+    if self.enemy.current_hp <= 0
+      puts("You defeated the #{self.enemy.name}!")
+      CommandLineInterface.current_player.get_pokemon(self.enemy.pokemon_id)
+      puts "#{self.enemy.name} was added to your roster!\nYour pokemon are feeling weary af and rest to heal."
+      CommandLineInterface.current_player.rosters.each do |pokemon|
+        pokemon.current_hp = self.base_hp
+      end
+      return true
+    elsif self.player.current_hp <= 0
+      puts("You lost :/")
+      return true
+    end
+    return false
   end
 
   def play
