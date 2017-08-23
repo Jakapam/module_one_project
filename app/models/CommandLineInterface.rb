@@ -9,9 +9,19 @@ class CommandLineInterface
   end
 
   def greet
-   puts "Welcome to Web-080717 Pokemon! Pokemon is copyrighted by Pokemon Company International.
-    \nProject is for educational purposes only. Please don't sue us.
-    \nMain Menu"
+    pokeball_image 
+    puts "Welcome to Web-080717 Pokemon! Pokemon is copyrighted by Pokemon Company International. Project is for educational purposes only. Please don't sue us."
+  end
+
+  def pokeball_image
+    Catpix::print_image "./app/models/image/5.png",
+      :limit_x => 0.7,
+      :limit_y => 0.7,
+      :center_x => false,
+      :center_y => false,
+      # :bg => "white",
+      :bg_fill => true,
+      :resolution => "auto"
   end
 
   def help

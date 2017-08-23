@@ -75,8 +75,8 @@ class Battle
     move_logic(self.player, move, self.enemy)
   end
 
-  def pokemon_enemy_image(hp)
-    Catpix::print_image "./app/models/image/#{rand(1..3)}.png",
+  def pokemon_image_generator(pokemon_id)
+    Catpix::print_image "./app/models/image/#{pokemon_id}.png",
       :limit_x => 0.35,
       :limit_y => 0.35,
       :center_x => false,
@@ -84,21 +84,16 @@ class Battle
       # :bg => "white",
       :bg_fill => true,
       :resolution => "auto"
+  end
 
+  def pokemon_enemy_image(hp, random_enemy)
+      pokemon_image_generator(random_enemy)
       #Marlan needs to pass in hp as arg
       print ((" "*(hp/2)).bg "#eb443b") + " HP #{hp}\n"
   end
 
-  def your_pokemon_image(hp)
-    Catpix::print_image "./app/models/image/#{rand(1..3)}.png",
-      :limit_x => 0.35,
-      :limit_y => 0.35,
-      :center_x => false,
-      :center_y => false,
-      # :bg => "white",
-      :bg_fill => true,
-      :resolution => "auto"
-
+  def your_pokemon_image(hp, your_pokemon)
+      pokemon_image_generator(your_pokemon)
       #Marlan needs to pass in hp as arg
       print ((" "*(hp/2)).bg "#eb443b") + " HP #{hp}\n"
   end
@@ -122,12 +117,14 @@ class Battle
 
   def play
     puts "you encountered a wild #{self.enemy.name}!!".upcase
+    random_enemy = rand(1..3)
+    your_pokemon = self.player.pokemon.id
     while self.enemy.current_hp > 0 && self.player.current_hp > 0
       puts("\n"+'='*30)
       puts "#{self.player.name} HP: #{self.player.current_hp} DODGE: #{self.player.dodge}"
-      self.your_pokemon_image(self.player.current_hp)
+      self.your_pokemon_image(self.player.current_hp, your_pokemon)
       puts "#{self.enemy.name} HP: #{self.enemy.current_hp} DODGE: #{self.enemy.dodge}"
-      self.pokemon_enemy_image(self.enemy.current_hp)
+      self.pokemon_enemy_image(self.enemy.current_hp, random_enemy)
       self.player_turn
       break if self.clean_up
       print('-'*30 + "\n")
@@ -135,7 +132,8 @@ class Battle
       break if self.clean_up
       print("\n"+'='*30)
     end
-    "Battle ended"
+    puts "Battle ended"
+    return true
   end
 
 end
