@@ -77,6 +77,7 @@ class CommandLineInterface
     new_trainer.get_pokemon(starter_poke_id)
     puts "\nCongratulations! You have a #{Pokemon.find(starter_poke_id).name}!"
     self.class.current_player = new_trainer
+    binding.pry
   end
 
   def load_game

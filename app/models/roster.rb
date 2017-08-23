@@ -5,8 +5,18 @@ class Roster < ActiveRecord::Base
 
   attr_accessor :base_hp, :dodge
 
-  def lead_pokemon
+  def self.lead_pokemon
     CommandLineInterface.current_player.lead_pokemon
+  end
+
+  def self.default_attributes
+    {
+    :current_hp => 60,
+    :move_1_id => 1,
+    :move_2_id => 2,
+    :move_3_id => 3,
+    :move_4_id => 4
+  }
   end
 
   def self.enemy_attributes
