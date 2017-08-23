@@ -115,7 +115,9 @@ class Game
         #triggers method "fight"
         elsif @board[self.position-10] === "😈"
           #fight_pokemon is the method that prints pokemon img
-          fight_pokemon
+          if fight_pokemon
+            @board[self.position-10] = " "
+          end
         end
         if @board[self.position-10] === " " && self.position-10 < 39
           board_shift_down
@@ -128,7 +130,9 @@ class Game
           change_board
         elsif @board[self.position+10] === "😈"
           #fight_pokemon is the method that prints pokemon img
-          fight_pokemon
+          if fight_pokemon
+            @board[self.position+10] = " "
+          end
         end
       when "left"                           #if ((i-1)-9)%10 == 0
         if @board[self.position-1] === " " && ((self.position-1)-9)%10 != 0
@@ -136,7 +140,9 @@ class Game
           change_board
         elsif @board[self.position-1] === "😈"
           #fight_pokemon is the method that prints pokemon img
-          fight_pokemon
+          if fight_pokemon
+            @board[self.position-1] = " "
+          end
         end
       when "right"
         if @board[self.position+1] === " " && (self.position + 1)%10 != 0
@@ -144,23 +150,22 @@ class Game
           change_board
         elsif @board[self.position+1] === "😈"
           #fight_pokemon is the method that prints pokemon img
-          fight_pokemon
+          if fight_pokemon
+            @board[self.position+1] = " "
+          end
         end
       when /r/i
         CommandLineInterface.current_player.display_roster
       when /n/i
         CommandLineInterface.new.new_game_setup
-      when /k/i
-        puts "Kill useless pokemon"
     end
   end
 
   def fight_pokemon #random_pokemon_generator
       new_battle = Battle.new
       new_battle.play #this is marlon's method
-      if new_battle.play
         @defeated_pokemons += 1
-      end
+        return true
   end
 
   def won? #this method is in get_move checks how many pokemon you defeated
