@@ -77,7 +77,7 @@ class CommandLineInterface
     new_trainer.get_pokemon(starter_poke_id)
     puts "\nCongratulations! You have a #{Pokemon.find(starter_poke_id).name}!"
     self.class.current_player = new_trainer
-    binding.pry
+
   end
 
   def delete_savefile
@@ -108,10 +108,7 @@ class CommandLineInterface
   end
 
   def run_game
-
-    puts "** Placeholder: Drop player into Game Interface **"
-    #this method integrates into David's Worlmap Display
-
+    Game.new.get_move
   end
 
   def in_game_menu
