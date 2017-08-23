@@ -20,7 +20,7 @@ class CommandLineInterface
     puts "** 'help' for instructions"
     puts "** 'New Game' to start a new game"
     puts "** 'Load Game' to continue a game"
-    puts "** 'Reset' to reset play data"
+    puts "** 'Delete' to delete a previously played game"
     puts "** 'Quit' to exit"
     puts " "
   end
@@ -79,22 +79,31 @@ class CommandLineInterface
     self.class.current_player = new_trainer
   end
 
-  def load_game
-    puts "Thanks for coming back!"
-    puts "Enter a number to load a game:"
-
+  def delete_savefile
+    puts "Select which game to delete"
     Trainer.display_trainer_names
-
+    puts "Enter a number:"
     input = gets.chomp
+    input = check_input(input)
+    Trainer.all[input.to_i-1].delete
+  end
 
+  def check_input(input)
     while input.to_i == 0 || !Trainer.all[input.to_i-1]
       puts "Invalid input, please enter valid number:"
       Trainer.display_trainer_names
       input = gets.chomp
     end
+  end
 
+  def load_game
+    puts "Thanks for coming back!"
+    puts "Enter a number to load a game:"
+
+    Trainer.display_trainer_names
+    input = gets.chomp
+    input = check_input(input)
     self.class.current_player = Trainer.find_by(name: "#{Trainer.all[input.to_i-1].name}")
-
   end
 
   def run_game
