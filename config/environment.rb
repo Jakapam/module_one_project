@@ -7,5 +7,5 @@ ActiveRecord::Base.establish_connection({
   database: 'db/pokemon.db'
   })
 
-require_all './lib'
+# require_all './lib'
 require_all './app/models'

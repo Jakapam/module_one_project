@@ -7,7 +7,7 @@ class Battle
   def set_up
     # RANDOMLY SELECT POKEMON NAME FROM DATA BASE
     self.enemy = Roster.new_enemy
-    self.player = Roster.player_test
+    self.player = Roster.lead_pokemon
     puts "set up success"
   end
 
@@ -75,6 +75,8 @@ class Battle
   def clean_up
     if self.enemy.current_hp <= 0
       puts("You defeated the #{self.enemy.name}!")
+      # self.enemy.trainer_id = CommandLineInterface.current_player.id
+      # self.enemy.current_hp = 60
       return true
     elsif self.player.current_hp <= 0
       puts("You lost :/")
@@ -86,15 +88,15 @@ class Battle
   def play
     puts "you encountered a wild #{self.enemy.name}!!".upcase
     while self.enemy.current_hp > 0 && self.player.current_hp > 0
-      puts("\n"+'='*20)
+      puts("\n"+'='*30)
       puts "#{self.player.name} HP: #{self.player.current_hp} DODGE: #{self.player.dodge}"
       puts "#{self.enemy.name} HP: #{self.enemy.current_hp} DODGE: #{self.enemy.dodge}"
       self.player_turn
       break if self.clean_up
-      print('-'*20 + "\n")
+      print('-'*30 + "\n")
       self.enemy_turn
       break if self.clean_up
-      print("\n"+'='*20)
+      print("\n"+'='*30)
     end
     "Battle ended"
   end

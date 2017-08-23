@@ -5,19 +5,23 @@ class Roster < ActiveRecord::Base
 
   attr_accessor :base_hp, :dodge
 
+  def self.lead_pokemon
+    CommandLineInterface.current_player.lead_pokemon
+  end
+
   def self.default_attributes
-    {:trainer_id => 1,
-    :pokemon_id => 151,
+    {
     :current_hp => 60,
     :move_1_id => 1,
     :move_2_id => 2,
     :move_3_id => 3,
-    :move_4_id => 4}
+    :move_4_id => 4
+  }
   end
 
   def self.enemy_attributes
     {:trainer_id => nil,
-    :pokemon_id => rand(1..151),
+    :pokemon_id => 67,
     :current_hp => 60,
     :move_1_id => 1,
     :move_2_id => 2,
