@@ -53,6 +53,7 @@ class Battle
     # randomly select a move for the enemy
     random_move = rand(0..3)
     move = self.enemy.move_set[random_move]
+    puts move.class
     move_logic(self.enemy, move, self.player)
   end
 
@@ -69,6 +70,7 @@ class Battle
     input = STDIN.gets.chomp.to_i
     self.player_input_valid?(input) ? true : self.player_turn
     move = self.player.move_set[(input - 1)]
+    puts move.class
     move_logic(self.player, move, self.enemy)
   end
 
@@ -83,12 +85,42 @@ class Battle
     return false
   end
 
+  def pokemon_enemy_image(hp)
+    Catpix::print_image "./app/models/image/#{rand(1..3)}.png",
+      :limit_x => 0.35,
+      :limit_y => 0.35,
+      :center_x => false,
+      :center_y => false,
+      # :bg => "white",
+      :bg_fill => true,
+      :resolution => "auto"
+
+      #Marlan needs to pass in hp as arg
+      print ((" "*(hp/2)).bg "#eb443b") + " HP #{hp}\n"
+  end
+
+  def your_pokemon_image(hp)
+    Catpix::print_image "./app/models/image/#{rand(1..3)}.png",
+      :limit_x => 0.35,
+      :limit_y => 0.35,
+      :center_x => false,
+      :center_y => false,
+      # :bg => "white",
+      :bg_fill => true,
+      :resolution => "auto"
+
+      #Marlan needs to pass in hp as arg
+      print ((" "*(hp/2)).bg "#eb443b") + " HP #{hp}\n"
+  end
+
   def play
     puts "you encountered a wild #{self.enemy.name}!!".upcase
     while self.enemy.current_hp > 0 && self.player.current_hp > 0
       puts("\n"+'='*20)
       puts "#{self.player.name} HP: #{self.player.current_hp} DODGE: #{self.player.dodge}"
+      self.your_pokemon_image(self.player.current_hp)
       puts "#{self.enemy.name} HP: #{self.enemy.current_hp} DODGE: #{self.enemy.dodge}"
+      self.pokemon_enemy_image(self.enemy.current_hp)
       self.player_turn
       break if self.clean_up
       print('-'*20 + "\n")

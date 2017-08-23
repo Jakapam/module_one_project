@@ -107,10 +107,7 @@ class CommandLineInterface
   end
 
   def run_game
-
-    puts "** Placeholder: Drop player into Game Interface **"
-    #this method integrates into David's Worlmap Display
-
+    Game.new.get_move
   end
 
   def in_game_menu
