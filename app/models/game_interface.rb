@@ -2,7 +2,6 @@ require 'pry'
 require 'remedy'
 require "tco"
 require "rmagick"
-require "pry"
 require 'catpix'
 
 
@@ -21,6 +20,8 @@ class Game
     #character starting position in the corner @board[90]
     @new_row = 0
     #new_row count for new wild pokemon
+    @defeated_pokemons = 0
+    #when this reach 4 you win, end game image pops up, play agian?
   end
 
   def show_board #this is the game board
@@ -47,6 +48,7 @@ class Game
     @board[9] = "⛩"
     user_input.loop do |key|
       make_move(key.to_s) #method
+      won?
     end
   end
 
@@ -155,6 +157,17 @@ class Game
 
   def fight_pokemon #random_pokemon_generator
       new_battle = Battle.new
-      new_battle.play
+      new_battle.play #this is marlon's method
+      if new_battle.play
+        @defeated_pokemons += 1
+      end
   end
+
+  def won? #this method is in get_move checks how many pokemon you defeated
+    if @defeated_pokemons === 4
+      puts "IT WORKS!!!!!!!!!!!!!!!!"
+      return
+    end
+  end
+
 end

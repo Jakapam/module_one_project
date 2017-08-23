@@ -21,7 +21,7 @@ class Roster < ActiveRecord::Base
 
   def self.enemy_attributes
     {:trainer_id => nil,
-    :pokemon_id => rand(Pokemon.all.size-1),
+    :pokemon_id => rand(Pokemon.all.size),
     :current_hp => 60,
     :move_1_id => 1,
     :move_2_id => 2,
