@@ -117,6 +117,7 @@ class Battle
       return true
     elsif self.player.current_hp <= 0
       puts("You lost :/")
+      exit!(puts "Thanks for playing!")
       return true
     end
     return false
