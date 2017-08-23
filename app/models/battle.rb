@@ -109,9 +109,9 @@ class Battle
       puts self.enemy.pokemon_id
       CommandLineInterface.current_player.get_pokemon(self.enemy.pokemon_id)
       puts "#{self.enemy.name} was added to your roster!\nYour pokemon are feeling weary af and rest to heal."
-      # CommandLineInterface.current_player.rosters.each do |pokemon|
-      #   pokemon.current_hp = self.base_hp
-      # end
+      CommandLineInterface.current_player.rosters.each do |pokemon|
+        pokemon.current_hp = pokemon.base_hp
+      end
       return true
     elsif self.player.current_hp <= 0
       puts("You lost :/")

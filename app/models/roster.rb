@@ -5,11 +5,13 @@ class Roster < ActiveRecord::Base
 
   attr_accessor :base_hp, :dodge
 
+  def base_hp
+    60
+  end
+
 
   def self.lead_pokemon
-    lead = CommandLineInterface.current_player.lead_pokemon
-    lead.base_hp = 60
-    lead
+    CommandLineInterface.current_player.lead_pokemon
   end
 
   def self.default_attributes
@@ -37,9 +39,7 @@ class Roster < ActiveRecord::Base
   end
 
   def self.new_enemy
-    enemy = self.create(self.enemy_attributes)
-    enemy.base_hp = 60
-    enemy
+    self.create(self.enemy_attributes)
   end
 
 
