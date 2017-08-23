@@ -123,7 +123,7 @@ class CommandLineInterface
   def run_game
     if Game.new.get_move
       sleep(3)
-      Runner.run
+      abort("Thanks for playing!!!")
     end
   end
 

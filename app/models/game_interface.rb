@@ -29,7 +29,6 @@ class Game
     puts "|             MENU:          |"
     puts "|   \"R\" ~ SHOW ROSTER        |"
     puts "|   \"N\" ~ New Game           |"
-    puts "|   \"K\" ~ Kill weak pokemon  |"
     puts "-"*30
     puts "-"*30
     for i in 0..99 do
@@ -170,7 +169,7 @@ class Game
   end
 
   def won? #this method is in get_move checks how many pokemon you defeated
-    if @defeated_pokemons === 4
+    if @defeated_pokemons === 1
       @defeated_pokemons = 0
       play_again?
     end
